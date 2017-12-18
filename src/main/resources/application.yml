@@ -1,0 +1,11 @@
+spring:
+  devtools:
+    restart:
+      additional-paths:
+        - src/main/kotlin
+  datasource:
+    url: jdbc:mysql://localhost:3306/anemone
+    username: root
+    password: root
+doma:
+  dialect: mysql
