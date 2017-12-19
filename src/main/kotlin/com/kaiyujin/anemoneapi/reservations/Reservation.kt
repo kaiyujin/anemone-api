@@ -1,3 +1,3 @@
 package com.kaiyujin.anemoneapi.reservations
 
-class Reservation(id: Int = 0, firstName: String = "", lastName: String = "")
+data class Reservation(val id: Int? = null, val firstName: String, val lastName: String)
