@@ -8,6 +8,7 @@ anemone project api
 `./gradlew bootRun`
 
 ## Usage
+[swagger](http://localhost:8080/swagger-ui.html)  
 
 ## Contributing
 
