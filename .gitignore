@@ -2,3 +2,4 @@
 docker/
 .gradle/
 build/
+anemone-api.iml
