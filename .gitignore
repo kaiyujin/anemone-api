@@ -1,6 +1,8 @@
 .idea/
 docker/
 .gradle/
+gradle/
+gradlew.bat
 build/
 anemone-api.iml
 .DS_Store
