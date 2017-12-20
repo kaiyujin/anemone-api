@@ -1,3 +1,4 @@
+# https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 spring:
   devtools:
     restart:
@@ -5,7 +6,10 @@ spring:
         - src/main/kotlin
   datasource:
     url: jdbc:mysql:replication://localhost:3306,localhost:3306/anemone
+    driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: root
 doma:
   dialect: mysql
+flyway:
+  enabled: true
