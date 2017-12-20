@@ -4,7 +4,7 @@ spring:
       additional-paths:
         - src/main/kotlin
   datasource:
-    url: jdbc:mysql://localhost:3306/anemone
+    url: jdbc:mysql://192.168.99.102:3306/anemone
     username: root
     password: root
 doma:
