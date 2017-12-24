@@ -19,7 +19,7 @@ CREATE TABLE authorities
 (
     id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(30) NOT NULL,
-    options BIT(20) NOT NULL default 524288,
+    authority_bit BIT(20) NOT NULL default 524288,
     created_by BIGINT UNSIGNED NOT NULL,
     created_in TEXT NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT current_timestamp,
