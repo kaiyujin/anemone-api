@@ -4,6 +4,7 @@ buildscript {
 		springBootVersion = '1.5.9.RELEASE'
 		springBootDomaVersion = '1.1.1'
 		domaVersion = '2.19.0'
+		domaGenVersion = '2.19.0'
 	}
 	repositories {
 		mavenCentral()
@@ -41,6 +42,9 @@ repositories {
 processResources.destinationDir = compileJava.destinationDir
 compileJava.dependsOn processResources
 
+configurations {
+	domaGenRuntime
+}
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-redis')
@@ -54,5 +58,68 @@ dependencies {
 	compile("io.springfox:springfox-swagger2:2.7.0")
 	compile("io.springfox:springfox-swagger-ui:2.7.0")
 	compile("org.flywaydb:flyway-core:5.0.3")
+	domaGenRuntime('mysql:mysql-connector-java')
+	domaGenRuntime("org.seasar.doma:doma-gen:${domaGenVersion}")
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+// for Doma-Gen
+task domaGen << {
+	// まず変更が必要なもの
+	def rootPackageName  = 'com.kaiyujin.anemoneapi'
+	def daoPackagePath   = 'src/main/java/com/kaiyujin/anemoneapi'
+	def dbUrl            = 'jdbc:mysql:replication://localhost:3306,localhost:3306/anemone'
+	def dbUser           = 'root'
+	def dbPassword       = 'root'
+	def tableNamePattern = '.*'
+	def workDirPath      = 'work'
+	def workDaoDirPath   = "${workDirPath}/dao"
+
+	// 作業用ディレクトリを削除する
+	clearDir("${workDirPath}")
+
+	// 現在の Dao インターフェースのバックアップを取得する
+	copy() {
+		from "${daoPackagePath}"
+		into "${workDaoDirPath}/org"
+	}
+
+	// Dao インターフェース、Entity クラスを生成する
+	ant.taskdef(resource: 'domagentask.properties', classpath: configurations.domaGenRuntime.asPath)
+	ant.gen(url: "${dbUrl}", user: "${dbUser}", password: "${dbPassword}", tableNamePattern: "${tableNamePattern}") {
+		entityConfig(packageName: "${rootPackageName}.entity", useListener: false, entitySuffix: "Entity")
+		daoConfig(packageName: "${rootPackageName}.dao")
+		sqlConfig()
+	}
+
+	// 生成された Dao インターフェースを作業用ディレクトリにコピーし、
+	// @ConfigAutowireable アノテーションを付加する
+	copy() {
+		from "${daoPackagePath}"
+		into "${workDaoDirPath}/replace"
+		filter {
+			line -> line.replaceAll('import org.seasar.doma.Dao;', "import org.seasar.doma.boot.ConfigAutowireable;\nimport org.seasar.doma.Dao;")
+					.replaceAll('@Dao', '@Dao\n@ConfigAutowireable')
+		}
+	}
+
+	// @ConfigAutowireable アノテーションを付加した Dao インターフェースを
+	// dao パッケージへ戻す
+	copy() {
+		from "${workDaoDirPath}/replace"
+		into "${daoPackagePath}"
+	}
+
+	// 元々 dao パッケージ内にあったファイルを元に戻す
+	copy() {
+		from "${workDaoDirPath}/org"
+		into "${daoPackagePath}"
+	}
+
+	// 作業用ディレクトリを削除する
+	clearDir("${workDirPath}")
+}
+
+void clearDir(String dirPath) {
+	delete dirPath
 }
