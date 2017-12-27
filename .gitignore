@@ -5,4 +5,5 @@ gradle/
 gradlew.bat
 build/
 anemone-api.iml
+work/
 .DS_Store
