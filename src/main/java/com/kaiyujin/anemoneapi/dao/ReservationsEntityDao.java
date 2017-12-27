@@ -20,7 +20,7 @@ public interface ReservationsEntityDao {
      * @return the ReservationsEntity entity
      */
     @Select
-    List<ReservationsEntity> find();
+    List<ReservationsEntity> find(ReservationsEntity reservation);
 
     /**
      * @param id

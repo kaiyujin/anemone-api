@@ -10,7 +10,10 @@ class ReservationsService(
 ) {
 
     fun findAll(): List<ReservationsEntity> {
-        return reservationsEntityDao.find()
+        //検索サンプル
+        val entity = ReservationsEntity()
+        //entity.statusId = 1
+        return reservationsEntityDao.find(entity)
     }
 
     fun create(reservation: Reservation): Int {
