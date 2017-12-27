@@ -86,7 +86,8 @@ task domaGen << {
 
 	// Dao インターフェース、Entity クラスを生成する
 	ant.taskdef(resource: 'domagentask.properties', classpath: configurations.domaGenRuntime.asPath)
-	ant.gen(url: "${dbUrl}", user: "${dbUser}", password: "${dbPassword}", tableNamePattern: "${tableNamePattern}") {
+	ant.gen(url: "${dbUrl}", user: "${dbUser}", password: "${dbPassword}",
+			ignoredTableNamePattern: "Flyway.*", tableNamePattern: "${tableNamePattern}") {
 		entityConfig(packageName: "${rootPackageName}.entity", useListener: false, entitySuffix: "Entity")
 		daoConfig(packageName: "${rootPackageName}.dao")
 		sqlConfig()
