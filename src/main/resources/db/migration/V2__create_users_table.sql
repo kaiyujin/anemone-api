@@ -2,7 +2,7 @@ CREATE TABLE users
 (
     id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'ユーザID',
     name VARCHAR(20) NOT NULL COMMENT '氏名',
-    email VARCHAR(200) NOT NULL COMMENT 'メールアドレス',
+    email VARCHAR(200) UNIQUE NOT NULL COMMENT 'メールアドレス',
     password text NOT NULL COMMENT 'パスワードハッシュ値',
     default_shop_id BIGINT UNSIGNED NOT NULL COMMENT 'デフォルトショップID',
     created_by BIGINT UNSIGNED NOT NULL COMMENT '作成者ID',
@@ -45,7 +45,9 @@ CREATE TABLE users_authorities
     created_at TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '作成日時',
     updated_by BIGINT UNSIGNED NOT NULL COMMENT '更新者ID',
     updated_in TEXT NOT NULL COMMENT '更新モジュール名',
-    updated_at TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp COMMENT '更新日時'
+    updated_at TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp COMMENT '更新日時',
+    PRIMARY KEY(user_id, authority_id, shop_id),
+    INDEX (user_id)
 )
 comment='ユーザ/権限交差テーブル'
 ;
