@@ -1,35 +1,37 @@
 package com.kaiyujin.anemoneapi.reservations
 
+import com.kaiyujin.anemoneapi.dao.ReservationsEntityDao
+import com.kaiyujin.anemoneapi.entity.ReservationsEntity
 import org.springframework.stereotype.Service
 
 @Service
 class ReservationsService(
-        private var reservationsDao: ReservationsDao
+        private val reservationsEntityDao: ReservationsEntityDao
 ) {
 
-    fun findAll(): List<ReservationEntity> {
-        return reservationsDao.selectAll()
+    fun findAll(): List<ReservationsEntity> {
+        return reservationsEntityDao.selectAll()
     }
 
     fun create(reservation: Reservation): Int {
         val reservationEntity =  domain2Entity(reservation)
-        return reservationsDao.insert(reservationEntity)
+        return reservationsEntityDao.insert(reservationEntity)
     }
 
     fun update(reservation: Reservation): Int {
         val reservationEntity =  domain2Entity(reservation)
-        return reservationsDao.update(reservationEntity)
+        return reservationsEntityDao.update(reservationEntity)
     }
 
-    private fun domain2Entity(reservation: Reservation): ReservationEntity {
-        return ReservationEntity().also {
+    private fun domain2Entity(reservation: Reservation): ReservationsEntity {
+        return ReservationsEntity().also {
             it.id = reservation.id
             it.firstName = reservation.firstName
             it.lastName = reservation.lastName
         }
     }
 
-    private fun entity2Domain(entity: ReservationEntity): Reservation {
+    private fun entity2Domain(entity: ReservationsEntity): Reservation {
         return Reservation(
                 id = entity.id,
                 firstName = entity.firstName,
