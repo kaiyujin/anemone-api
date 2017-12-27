@@ -94,12 +94,15 @@ task domaGen << {
 
 	// 生成された Dao インターフェースを作業用ディレクトリにコピーし、
 	// @ConfigAutowireable アノテーションを付加する
+	// updated_at, created_atはdb側で設定するため登録更新できなくする。
 	copy() {
 		from "${daoPackagePath}"
 		into "${workDaoDirPath}/replace"
 		filter {
 			line -> line.replaceAll('import org.seasar.doma.Dao;', "import org.seasar.doma.boot.ConfigAutowireable;\nimport org.seasar.doma.Dao;")
 					.replaceAll('@Dao', '@Dao\n@ConfigAutowireable')
+					.replaceAll('"updated_at"', '"updated_at", insertable = false, updatable = false')
+					.replaceAll('"created_at"', '"created_at", insertable = false, updatable = false')
 		}
 	}
 
