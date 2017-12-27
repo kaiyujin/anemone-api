@@ -1,9 +1,9 @@
 package com.kaiyujin.anemoneapi.entity;
 
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import org.seasar.doma.Column;
 import org.seasar.doma.Entity;
+import org.seasar.doma.Id;
 import org.seasar.doma.Table;
 
 /**
@@ -14,20 +14,23 @@ import org.seasar.doma.Table;
 public class UsersAuthoritiesEntity {
 
     /** ユーザID */
+    @Id
     @Column(name = "user_id")
-    BigInteger userId;
+    Long userId;
 
     /** 権限ID */
+    @Id
     @Column(name = "authority_id")
     Long authorityId;
 
     /** 店舗ID */
+    @Id
     @Column(name = "shop_id")
-    BigInteger shopId;
+    Long shopId;
 
     /** 作成者ID */
     @Column(name = "created_by")
-    BigInteger createdBy;
+    Long createdBy;
 
     /** 作成モジュール名 */
     @Column(name = "created_in")
@@ -39,7 +42,7 @@ public class UsersAuthoritiesEntity {
 
     /** 更新者ID */
     @Column(name = "updated_by")
-    BigInteger updatedBy;
+    Long updatedBy;
 
     /** 更新モジュール名 */
     @Column(name = "updated_in")
@@ -54,7 +57,7 @@ public class UsersAuthoritiesEntity {
      * 
      * @return the userId
      */
-    public BigInteger getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
@@ -63,7 +66,7 @@ public class UsersAuthoritiesEntity {
      * 
      * @param userId the userId
      */
-    public void setUserId(BigInteger userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -90,7 +93,7 @@ public class UsersAuthoritiesEntity {
      * 
      * @return the shopId
      */
-    public BigInteger getShopId() {
+    public Long getShopId() {
         return shopId;
     }
 
@@ -99,7 +102,7 @@ public class UsersAuthoritiesEntity {
      * 
      * @param shopId the shopId
      */
-    public void setShopId(BigInteger shopId) {
+    public void setShopId(Long shopId) {
         this.shopId = shopId;
     }
 
@@ -108,7 +111,7 @@ public class UsersAuthoritiesEntity {
      * 
      * @return the createdBy
      */
-    public BigInteger getCreatedBy() {
+    public Long getCreatedBy() {
         return createdBy;
     }
 
@@ -117,7 +120,7 @@ public class UsersAuthoritiesEntity {
      * 
      * @param createdBy the createdBy
      */
-    public void setCreatedBy(BigInteger createdBy) {
+    public void setCreatedBy(Long createdBy) {
         this.createdBy = createdBy;
     }
 
@@ -162,7 +165,7 @@ public class UsersAuthoritiesEntity {
      * 
      * @return the updatedBy
      */
-    public BigInteger getUpdatedBy() {
+    public Long getUpdatedBy() {
         return updatedBy;
     }
 
@@ -171,7 +174,7 @@ public class UsersAuthoritiesEntity {
      * 
      * @param updatedBy the updatedBy
      */
-    public void setUpdatedBy(BigInteger updatedBy) {
+    public void setUpdatedBy(Long updatedBy) {
         this.updatedBy = updatedBy;
     }
 

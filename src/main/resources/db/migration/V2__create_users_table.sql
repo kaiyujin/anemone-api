@@ -1,14 +1,14 @@
 CREATE TABLE users
 (
-    id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'ユーザID',
+    id BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT 'ユーザID',
     name VARCHAR(20) NOT NULL COMMENT '氏名',
     email VARCHAR(200) UNIQUE NOT NULL COMMENT 'メールアドレス',
     password text NOT NULL COMMENT 'パスワードハッシュ値',
-    default_shop_id BIGINT UNSIGNED NOT NULL COMMENT 'デフォルトショップID',
-    created_by BIGINT UNSIGNED NOT NULL COMMENT '作成者ID',
+    default_shop_id BIGINT NOT NULL COMMENT 'デフォルトショップID',
+    created_by BIGINT NOT NULL COMMENT '作成者ID',
     created_in TEXT NOT NULL COMMENT '作成モジュール名',
     created_at TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '作成日時',
-    updated_by BIGINT UNSIGNED NOT NULL COMMENT '更新者ID',
+    updated_by BIGINT NOT NULL COMMENT '更新者ID',
     updated_in TEXT NOT NULL COMMENT '更新モジュール名',
     updated_at TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp COMMENT '更新日時'
 )
@@ -19,10 +19,10 @@ CREATE TABLE authorities
     id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT '権限ID',
     name VARCHAR(30) NOT NULL COMMENT '権限名',
     authority_bit BIT(20) NOT NULL default 524288 COMMENT '権限ビット',
-    created_by BIGINT UNSIGNED NOT NULL COMMENT '作成者ID',
+    created_by BIGINT NOT NULL COMMENT '作成者ID',
     created_in TEXT NOT NULL COMMENT '作成モジュール名',
     created_at TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '作成日時',
-    updated_by BIGINT UNSIGNED NOT NULL COMMENT '更新者ID',
+    updated_by BIGINT NOT NULL COMMENT '更新者ID',
     updated_in TEXT NOT NULL COMMENT '更新モジュール名',
     updated_at TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp COMMENT '更新日時'
 )
@@ -37,13 +37,13 @@ options
 */
 CREATE TABLE users_authorities
 (
-    user_id BIGINT UNSIGNED NOT NULL COMMENT 'ユーザID',
+    user_id BIGINT NOT NULL COMMENT 'ユーザID',
     authority_id INT UNSIGNED NOT NULL COMMENT '権限ID',
-    shop_id BIGINT UNSIGNED NOT NULL COMMENT '店舗ID',
-    created_by BIGINT UNSIGNED NOT NULL COMMENT '作成者ID',
+    shop_id BIGINT NOT NULL COMMENT '店舗ID',
+    created_by BIGINT NOT NULL COMMENT '作成者ID',
     created_in TEXT NOT NULL COMMENT '作成モジュール名',
     created_at TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '作成日時',
-    updated_by BIGINT UNSIGNED NOT NULL COMMENT '更新者ID',
+    updated_by BIGINT NOT NULL COMMENT '更新者ID',
     updated_in TEXT NOT NULL COMMENT '更新モジュール名',
     updated_at TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp COMMENT '更新日時',
     PRIMARY KEY(user_id, authority_id, shop_id),

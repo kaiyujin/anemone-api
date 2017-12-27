@@ -1,7 +1,6 @@
 package com.kaiyujin.anemoneapi.dao;
 
 import com.kaiyujin.anemoneapi.entity.UsersEntity;
-import java.math.BigInteger;
 import org.seasar.doma.boot.ConfigAutowireable;
 import org.seasar.doma.Dao;
 import org.seasar.doma.Delete;
@@ -20,7 +19,7 @@ public interface UsersEntityDao {
      * @return the UsersEntity entity
      */
     @Select
-    UsersEntity selectById(BigInteger id);
+    UsersEntity selectById(Long id);
 
     /**
      * @param entity

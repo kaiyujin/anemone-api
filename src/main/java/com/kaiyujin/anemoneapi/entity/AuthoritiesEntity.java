@@ -1,6 +1,5 @@
 package com.kaiyujin.anemoneapi.entity;
 
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import org.seasar.doma.Column;
 import org.seasar.doma.Entity;
@@ -32,7 +31,7 @@ public class AuthoritiesEntity {
 
     /** 作成者ID */
     @Column(name = "created_by")
-    BigInteger createdBy;
+    Long createdBy;
 
     /** 作成モジュール名 */
     @Column(name = "created_in")
@@ -44,7 +43,7 @@ public class AuthoritiesEntity {
 
     /** 更新者ID */
     @Column(name = "updated_by")
-    BigInteger updatedBy;
+    Long updatedBy;
 
     /** 更新モジュール名 */
     @Column(name = "updated_in")
@@ -113,7 +112,7 @@ public class AuthoritiesEntity {
      * 
      * @return the createdBy
      */
-    public BigInteger getCreatedBy() {
+    public Long getCreatedBy() {
         return createdBy;
     }
 
@@ -122,7 +121,7 @@ public class AuthoritiesEntity {
      * 
      * @param createdBy the createdBy
      */
-    public void setCreatedBy(BigInteger createdBy) {
+    public void setCreatedBy(Long createdBy) {
         this.createdBy = createdBy;
     }
 
@@ -167,7 +166,7 @@ public class AuthoritiesEntity {
      * 
      * @return the updatedBy
      */
-    public BigInteger getUpdatedBy() {
+    public Long getUpdatedBy() {
         return updatedBy;
     }
 
@@ -176,7 +175,7 @@ public class AuthoritiesEntity {
      * 
      * @param updatedBy the updatedBy
      */
-    public void setUpdatedBy(BigInteger updatedBy) {
+    public void setUpdatedBy(Long updatedBy) {
         this.updatedBy = updatedBy;
     }
 

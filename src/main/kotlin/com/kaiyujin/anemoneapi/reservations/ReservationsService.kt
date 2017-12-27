@@ -10,7 +10,7 @@ class ReservationsService(
 ) {
 
     fun findAll(): List<ReservationsEntity> {
-        return reservationsEntityDao.selectAll()
+        return reservationsEntityDao.find()
     }
 
     fun create(reservation: Reservation): Int {

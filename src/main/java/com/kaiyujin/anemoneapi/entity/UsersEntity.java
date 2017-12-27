@@ -1,6 +1,5 @@
 package com.kaiyujin.anemoneapi.entity;
 
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import org.seasar.doma.Column;
 import org.seasar.doma.Entity;
@@ -20,7 +19,7 @@ public class UsersEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    BigInteger id;
+    Long id;
 
     /** 氏名 */
     @Column(name = "name")
@@ -36,11 +35,11 @@ public class UsersEntity {
 
     /** デフォルトショップID */
     @Column(name = "default_shop_id")
-    BigInteger defaultShopId;
+    Long defaultShopId;
 
     /** 作成者ID */
     @Column(name = "created_by")
-    BigInteger createdBy;
+    Long createdBy;
 
     /** 作成モジュール名 */
     @Column(name = "created_in")
@@ -52,7 +51,7 @@ public class UsersEntity {
 
     /** 更新者ID */
     @Column(name = "updated_by")
-    BigInteger updatedBy;
+    Long updatedBy;
 
     /** 更新モジュール名 */
     @Column(name = "updated_in")
@@ -67,7 +66,7 @@ public class UsersEntity {
      * 
      * @return the id
      */
-    public BigInteger getId() {
+    public Long getId() {
         return id;
     }
 
@@ -76,7 +75,7 @@ public class UsersEntity {
      * 
      * @param id the id
      */
-    public void setId(BigInteger id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -139,7 +138,7 @@ public class UsersEntity {
      * 
      * @return the defaultShopId
      */
-    public BigInteger getDefaultShopId() {
+    public Long getDefaultShopId() {
         return defaultShopId;
     }
 
@@ -148,7 +147,7 @@ public class UsersEntity {
      * 
      * @param defaultShopId the defaultShopId
      */
-    public void setDefaultShopId(BigInteger defaultShopId) {
+    public void setDefaultShopId(Long defaultShopId) {
         this.defaultShopId = defaultShopId;
     }
 
@@ -157,7 +156,7 @@ public class UsersEntity {
      * 
      * @return the createdBy
      */
-    public BigInteger getCreatedBy() {
+    public Long getCreatedBy() {
         return createdBy;
     }
 
@@ -166,7 +165,7 @@ public class UsersEntity {
      * 
      * @param createdBy the createdBy
      */
-    public void setCreatedBy(BigInteger createdBy) {
+    public void setCreatedBy(Long createdBy) {
         this.createdBy = createdBy;
     }
 
@@ -211,7 +210,7 @@ public class UsersEntity {
      * 
      * @return the updatedBy
      */
-    public BigInteger getUpdatedBy() {
+    public Long getUpdatedBy() {
         return updatedBy;
     }
 
@@ -220,7 +219,7 @@ public class UsersEntity {
      * 
      * @param updatedBy the updatedBy
      */
-    public void setUpdatedBy(BigInteger updatedBy) {
+    public void setUpdatedBy(Long updatedBy) {
         this.updatedBy = updatedBy;
     }
 

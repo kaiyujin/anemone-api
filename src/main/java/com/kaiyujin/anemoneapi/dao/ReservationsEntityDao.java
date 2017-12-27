@@ -17,11 +17,10 @@ import java.util.List;
 public interface ReservationsEntityDao {
 
     /**
-     *
-     * @return the ReservationsEntity entity list
+     * @return the ReservationsEntity entity
      */
     @Select
-    List<ReservationsEntity> selectAll();
+    List<ReservationsEntity> find();
 
     /**
      * @param id
