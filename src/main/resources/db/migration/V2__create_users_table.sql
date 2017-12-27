@@ -10,7 +10,7 @@ CREATE TABLE users
     created_at TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '作成日時',
     updated_by BIGINT UNSIGNED NOT NULL COMMENT '更新者ID',
     updated_in TEXT NOT NULL COMMENT '更新モジュール名',
-    updated_at TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '更新日時'
+    updated_at TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp COMMENT '更新日時'
 )
 comment='ユーザマスタ'
 ;
@@ -24,7 +24,7 @@ CREATE TABLE authorities
     created_at TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '作成日時',
     updated_by BIGINT UNSIGNED NOT NULL COMMENT '更新者ID',
     updated_in TEXT NOT NULL COMMENT '更新モジュール名',
-    updated_at TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '更新日時'
+    updated_at TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp COMMENT '更新日時'
 )
 comment='権限マスタ'
 ;
@@ -45,7 +45,7 @@ CREATE TABLE users_authorities
     created_at TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '作成日時',
     updated_by BIGINT UNSIGNED NOT NULL COMMENT '更新者ID',
     updated_in TEXT NOT NULL COMMENT '更新モジュール名',
-    updated_at TIMESTAMP NOT NULL DEFAULT current_timestamp COMMENT '更新日時'
+    updated_at TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp COMMENT '更新日時'
 )
 comment='ユーザ/権限交差テーブル'
 ;
