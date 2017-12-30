@@ -14,8 +14,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 //認証チェック不要パスを設定
                 .antMatchers(
-                        "/health_check",
-                        "/login/"
+                        "/health",
+                        "/auth/**"
                 ).permitAll()
                 .anyRequest().authenticated()
                 .and().csrf().disable();
